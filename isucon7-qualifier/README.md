@@ -1,6 +1,19 @@
 ISUCON7 予選問題
 ====
 
+参考　https://github.com/at0x0ft/docker-isucon/pull/1
+ログを消す方法
+sh lotate.sh
+ログを見る方法
+nginx
+```
+alp json  --sort sum -r  -m "/channel/\d+, /icons/\w+, /history/\d+, /profile/\w+"  -o count,method,uri,min,avg,max,sum  < log/nginx/access.log
+```
+mysql
+```
+mysqldumpslow log/mysql/mysql-slow.log
+```
+
 [予選マニュアル](https://gist.github.com/941/8c64842b71995a2d448315e2594f62c2)
 
 ## 感想戦用、1VMでの動かし方
