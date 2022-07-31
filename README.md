@@ -1,7 +1,7 @@
 # docker-isucon
 
 ## Overview
-
+参考　https://github.com/at0x0ft/docker-isucon/pull/1
 Dockerfile for [ISUCON](http://isucon.net/)
 
 - [ISUCON4-qualifier](https://github.com/matsuu/docker-isucon/tree/master/isucon4-qualifier)
