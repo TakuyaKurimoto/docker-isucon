@@ -1,6 +1,6 @@
 FROM alpine AS build-dev
 
-ARG GIT_URL=https://github.com/isucon/isucon7-qualify.git
+ARG GIT_URL=https://github.com/at0x0ft/isucon7-qualify.git
 
 RUN \
   apk --no-cache add git && \
