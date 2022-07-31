@@ -52,3 +52,13 @@ SET timestamp=1659279257;
 # Query_time: 0.000417  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 1038
 SET timestamp=1659279257;
 # administrator command: Ping;
+# Time: 2022-07-31T14:55:21.395581Z
+# User@Host: isucon[isucon] @  [172.23.0.1]  Id:  1904
+# Query_time: 0.000173  Lock_time: 0.000000 Rows_sent: 0  Rows_examined: 0
+SET timestamp=1659279321;
+# administrator command: Ping;
+# Time: 2022-07-31T14:55:21.395638Z
+# User@Host: isucon[isucon] @  [172.23.0.1]  Id:  1895
+# Query_time: 0.000331  Lock_time: 0.000000 Rows_sent: 1  Rows_examined: 1038
+SET timestamp=1659279321;
+# administrator command: Ping;
