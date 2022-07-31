@@ -13,6 +13,16 @@ mysql
 ```
 mysqldumpslow log/mysql/mysql-slow.log
 ```
+ベンチマーク実行
+```
+docker-compose up bench
+```
+
+ベンチマークログ
+```
+初回
+score 3653
+```
 
 [予選マニュアル](https://gist.github.com/941/8c64842b71995a2d448315e2594f62c2)
 
