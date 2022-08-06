@@ -54,7 +54,7 @@ services:
       dockerfile: ./docker/db/Dockerfile
     image: isucon7-qualifier-db
     ports:
-      - "3306"
+      - "3306:3306"
     networks:
       - backend
     command: ["--character-set-server=utf8mb4"]
