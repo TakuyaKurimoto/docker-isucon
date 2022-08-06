@@ -11,7 +11,7 @@ alp json  --sort sum -r  -m "/channel/\d+, /icons/\w+, /history/\d+, /profile/\w
 ```
 mysql
 ```
-mysqldumpslow log/mysql/mysql-slow.log
+mysqldumpslow -s t log/mysql/mysql-slow.log
 ```
 ベンチマーク実行
 ```
