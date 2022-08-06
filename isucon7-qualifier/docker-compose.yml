@@ -46,6 +46,8 @@ services:
       ISUBATA_DB_USER: isucon
       ISUBATA_DB_PASSWORD: isucon
       ISUBATA_DB_HOST: db
+    volumes:
+      - .:/home/isucon/isubata
   db:
     build:
       context: .

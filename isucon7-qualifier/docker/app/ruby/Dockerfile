@@ -2,7 +2,7 @@ FROM ruby:2.4.2
 
 COPY . /home/isucon/isubata
 WORKDIR /home/isucon/isubata/webapp/ruby
-RUN bundle install --path vendor/bundle
+RUN bundle install
 
 EXPOSE 5000
 

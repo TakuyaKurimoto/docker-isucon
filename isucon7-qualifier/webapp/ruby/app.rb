@@ -327,6 +327,9 @@ class App < Sinatra::Base
     mime = ext2mime(ext)
     if !row.nil? && !mime.empty?
       content_type mime
+      f = File.open("#{settings.public_folder}/icons/#{file_name}", "w")
+      f.write(row['data']) 
+      f.close
       return row['data']
     end
     404
