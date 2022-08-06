@@ -303,17 +303,17 @@ class App < Sinatra::Base
     end
 
     if !avatar_name.nil? && !avatar_data.nil?
-      statement = db.prepare('INSERT INTO image (name, data) VALUES (?, ?)')
-      statement.execute(avatar_name, avatar_data)
-      statement.close
-      statement = db.prepare('UPDATE user SET avatar_icon = ? WHERE id = ?')
-      statement.execute(avatar_name, user['id'])
-      statement.close
-    end
-
-    if !display_name.nil? || !display_name.empty?
-      statement = db.prepare('UPDATE user SET display_name = ? WHERE id = ?')
-      statement.execute(display_name, user['id'])
+      p avatar_name
+      f = File.open("#{settings.public_folder}/icons/#{avatar_name}", "w")
+      f.write(avatar_data) 
+      f.close
+      if !display_name.nil? || !display_name.empty?
+        statement = db.prepare('UPDATE user SET avatar_icon = ?,display_name = ? WHERE id = ?')
+        statement.execute(avatar_name, display_name, user['id'])
+      else
+        statement = db.prepare('UPDATE user SET avatar_icon = ? WHERE id = ?')
+        statement.execute(avatar_name, user['id'])
+      end
       statement.close
     end
 
