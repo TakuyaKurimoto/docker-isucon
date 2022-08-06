@@ -150,25 +150,27 @@ class App < Sinatra::Base
     if user_id.nil?
       return 403
     end
-
     rows = db.query('SELECT id FROM channel').to_a
     channel_ids = rows.map { |row| row['id'] }
 
+    statement = db.prepare('SELECT message.channel_id, COUNT(*) AS cnt
+      FROM message 
+      LEFT OUTER JOIN haveread on haveread.user_id = ? and haveread.channel_id = message.channel_id
+      WHERE message.id >
+        CASE 
+          WHEN haveread.message_id IS NULL THEN 0
+          ELSE haveread.message_id
+        END
+      GROUP BY message.channel_id'
+    )
+    rows = statement.execute(user_id).to_a.map { |row| [row['channel_id'], row['cnt']] }.to_h
+    statement.close
+
     res = []
     channel_ids.each do |channel_id|
-      statement = db.prepare('SELECT * FROM haveread WHERE user_id = ? AND channel_id = ?')
-      row = statement.execute(user_id, channel_id).first
-      statement.close
       r = {}
       r['channel_id'] = channel_id
-      r['unread'] = if row.nil?
-        statement = db.prepare('SELECT COUNT(*) as cnt FROM message WHERE channel_id = ?')
-        statement.execute(channel_id).first['cnt']
-      else
-        statement = db.prepare('SELECT COUNT(*) as cnt FROM message WHERE channel_id = ? AND ? < id')
-        statement.execute(channel_id, row['message_id']).first['cnt']
-      end
-      statement.close
+      r['unread'] = rows[channel_id] || 0
       res << r
     end
 
