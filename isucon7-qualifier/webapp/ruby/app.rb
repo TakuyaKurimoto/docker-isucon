@@ -121,7 +121,7 @@ class App < Sinatra::Base
     statement = db.prepare('SELECT * FROM message WHERE id > ? AND channel_id = ? ORDER BY id DESC LIMIT 100')
     rows = statement.execute(last_message_id, channel_id).to_a
     statement.close
-    users = db.query("SELECT id, name, display_name, avatar_icon FROM user WHERE id IN ( #{rows.map {|row| row['user_id']}.join(',')} )").to_a.map {|row| [row['id'], row]}.to_h
+    users = db.query("SELECT id, name, display_name, avatar_icon FROM user WHERE id IN ( #{rows.map {|row| row['user_id']}.join(',')} )").to_a.map {|row| [row['id'], row]}.to_h if rows.length > 0
     response = []
     rows.each do |row|
       r = {}
